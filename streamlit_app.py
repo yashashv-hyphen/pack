@@ -36,7 +36,7 @@ if uploaded is not None:
 
             out_buf = io.BytesIO()
             saved = []
-            # PNGs are already compressed — re-deflating them in the zip just
+            # JPEGs are already compressed — re-deflating them in the zip just
             # burns CPU for no size benefit, so store them uncompressed.
             with zipfile.ZipFile(out_buf, "w", zipfile.ZIP_STORED) as out_zf:
                 for idx, name in enumerate(entries, 1):
@@ -45,10 +45,14 @@ if uploaded is not None:
                     try:
                         img = Image.open(io.BytesIO(zf.read(name)))
                         for fname, result in process_image(img, stem):
+                            # Packs are already flattened onto a solid background
+                            # (no transparency), so JPEG gives a much smaller file
+                            # than PNG with no visible quality loss at this quality.
                             buf = io.BytesIO()
-                            result.save(buf, format="PNG", compress_level=4)
-                            out_zf.writestr(fname, buf.getvalue())
-                            saved.append(fname)
+                            result.save(buf, format="JPEG", quality=92, optimize=True)
+                            jpg_name = fname.rsplit(".", 1)[0] + ".jpg"
+                            out_zf.writestr(jpg_name, buf.getvalue())
+                            saved.append(jpg_name)
                     except Exception as e:
                         st.error(f"{Path(name).name}: {e}")
                     progress.progress(idx / len(entries))
