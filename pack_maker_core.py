@@ -68,11 +68,10 @@ def auto_crop_to_content(img: Image.Image, bg_color: tuple[int, int, int],
     return rgba.crop((left, top, right, bottom))
 
 
-def build_pack(source: Image.Image, count: int,
-               bg_color: tuple[int, int, int]) -> Image.Image:
+def _build_pack_row(src: Image.Image, count: int,
+                    bg_color: tuple[int, int, int]) -> Image.Image:
     """Lay items out side by side horizontally, with a slight depth
     scale/rise on each successive item for a shelf-like 3D look."""
-    src = source.convert("RGBA")
     w, h = src.size
 
     depth_scale = 0.02
@@ -94,6 +93,37 @@ def build_pack(source: Image.Image, count: int,
         x = i * step
         y = canvas_h - ih - int(h * depth_rise * depth)
         canvas.alpha_composite(card, dest=(x, y))
+
+    return canvas
+
+
+def _build_pack_grid(src: Image.Image, cols: int, rows: int,
+                     bg_color: tuple[int, int, int]) -> Image.Image:
+    """Lay items out in a cols x rows grid, no overlap."""
+    w, h = src.size
+    canvas_w = cols * w + (cols - 1) * GAP
+    canvas_h = rows * h + (rows - 1) * GAP
+
+    canvas = Image.new("RGBA", (canvas_w, canvas_h),
+                       (bg_color[0], bg_color[1], bg_color[2], 255))
+
+    for row in range(rows):
+        for col in range(cols):
+            x = col * (w + GAP)
+            y = row * (h + GAP)
+            canvas.alpha_composite(src, dest=(x, y))
+
+    return canvas
+
+
+def build_pack(source: Image.Image, count: int,
+               bg_color: tuple[int, int, int]) -> Image.Image:
+    src = source.convert("RGBA")
+
+    if count == 4:
+        canvas = _build_pack_grid(src, cols=2, rows=2, bg_color=bg_color)
+    else:
+        canvas = _build_pack_row(src, count, bg_color)
 
     bbox = canvas.getbbox()
     return canvas.crop(bbox) if bbox else canvas
