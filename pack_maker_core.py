@@ -9,6 +9,7 @@ GAP = 1  # px between items
 CROP_PAD = 6  # px of breathing room kept around the auto-cropped product
 CROP_TOLERANCE = 12  # 0-255, how different from bg a pixel must be to count as product
 MAX_SOURCE_DIM = 1600  # downscale huge source photos before processing, for speed
+OUTPUT_SIZE = 2000  # px, square — the marketplace-recommended output resolution
 
 
 def sample_bg_color(img: Image.Image) -> tuple[int, int, int]:
@@ -95,9 +96,16 @@ def build_pack(source: Image.Image, count: int,
     return canvas.crop(bbox) if bbox else canvas
 
 
-def render_on_background(pack: Image.Image, bg_color: tuple[int, int, int]) -> Image.Image:
-    bg = Image.new("RGB", pack.size, bg_color)
-    bg.paste(pack, mask=pack.split()[3])
+def render_on_background(pack: Image.Image, bg_color: tuple[int, int, int],
+                         size: int = OUTPUT_SIZE) -> Image.Image:
+    """Center the pack on a size x size square canvas, scaling it to fit."""
+    fit = pack.copy()
+    fit.thumbnail((size, size), Image.LANCZOS)
+
+    bg = Image.new("RGB", (size, size), bg_color)
+    x = (size - fit.width) // 2
+    y = (size - fit.height) // 2
+    bg.paste(fit, (x, y), mask=fit.split()[3])
     return bg
 
 
