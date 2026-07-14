@@ -36,7 +36,9 @@ if uploaded is not None:
 
             out_buf = io.BytesIO()
             saved = []
-            with zipfile.ZipFile(out_buf, "w", zipfile.ZIP_DEFLATED) as out_zf:
+            # PNGs are already compressed — re-deflating them in the zip just
+            # burns CPU for no size benefit, so store them uncompressed.
+            with zipfile.ZipFile(out_buf, "w", zipfile.ZIP_STORED) as out_zf:
                 for idx, name in enumerate(entries, 1):
                     stem = Path(name).stem
                     status.text(f"[{idx}/{len(entries)}]  {Path(name).name}")
@@ -44,7 +46,7 @@ if uploaded is not None:
                         img = Image.open(io.BytesIO(zf.read(name)))
                         for fname, result in process_image(img, stem):
                             buf = io.BytesIO()
-                            result.save(buf, format="PNG")
+                            result.save(buf, format="PNG", compress_level=4)
                             out_zf.writestr(fname, buf.getvalue())
                             saved.append(fname)
                     except Exception as e:
