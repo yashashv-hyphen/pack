@@ -9,8 +9,7 @@ GAP = 1  # px between items
 CROP_PAD = 6  # px of breathing room kept around the auto-cropped product
 CROP_TOLERANCE = 12  # 0-255, how different from bg a pixel must be to count as product
 MAX_SOURCE_DIM = 1600  # downscale huge source photos before processing, for speed
-OUTPUT_MIN_SIDE = 2000  # px, recommended floor for the shorter output side
-OUTPUT_MAX_SIDE = 3000  # px, cap for the longer output side
+OUTPUT_MAX_SIDE = 3000  # px, the longer output side always maximizes to this
 
 
 def sample_bg_color(img: Image.Image) -> tuple[int, int, int]:
@@ -99,18 +98,24 @@ def _build_pack_row(src: Image.Image, count: int,
 
 def _build_pack_grid(src: Image.Image, cols: int, rows: int,
                      bg_color: tuple[int, int, int]) -> Image.Image:
-    """Lay items out in a cols x rows grid, no overlap."""
+    """Lay items out in a cols x rows grid, no overlap. Each item is
+    centered in a square cell (sized to its longer side) so an equal
+    cols x rows grid — e.g. 2x2 — comes out an exact square canvas,
+    with no padding or cropping needed to reach 1:1."""
     w, h = src.size
-    canvas_w = cols * w + (cols - 1) * GAP
-    canvas_h = rows * h + (rows - 1) * GAP
+    cell = max(w, h)
+    canvas_w = cols * cell + (cols - 1) * GAP
+    canvas_h = rows * cell + (rows - 1) * GAP
 
     canvas = Image.new("RGBA", (canvas_w, canvas_h),
                        (bg_color[0], bg_color[1], bg_color[2], 255))
 
     for row in range(rows):
         for col in range(cols):
-            x = col * (w + GAP)
-            y = row * (h + GAP)
+            cell_x = col * (cell + GAP)
+            cell_y = row * (cell + GAP)
+            x = cell_x + (cell - w) // 2
+            y = cell_y + (cell - h) // 2
             canvas.alpha_composite(src, dest=(x, y))
 
     return canvas
@@ -130,16 +135,15 @@ def build_pack(source: Image.Image, count: int,
 
 
 def render_on_background(pack: Image.Image, bg_color: tuple[int, int, int],
-                         min_side: int = OUTPUT_MIN_SIDE,
                          max_side: int = OUTPUT_MAX_SIDE) -> Image.Image:
     """Resize the pack up to a resolution matching its own aspect ratio —
-    no cropping, so no product is ever cut off. The shorter side targets
-    min_side (2000px); if the pack is elongated enough that would push the
-    longer side past max_side (3000px), the longer side is capped there
-    instead and the shorter side comes out a bit under min_side."""
+    no cropping, so no product is ever cut off. The longer side always
+    maximizes to max_side (3000px); the shorter side follows the pack's
+    own aspect ratio (so a square pack, e.g. the pack-of-4 grid, comes
+    out an exact 3000x3000)."""
     w, h = pack.size
     aspect = max(w, h) / min(w, h)
-    long_side = min(max_side, round(min_side * aspect))
+    long_side = max_side
     short_side = max(1, round(long_side / aspect))
     size = (long_side, short_side) if w >= h else (short_side, long_side)
 
