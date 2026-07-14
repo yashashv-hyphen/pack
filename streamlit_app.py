@@ -20,8 +20,15 @@ st.caption("Upload a ZIP of product images, get packs of 2, 3, and 4.")
 
 uploaded = st.file_uploader("Upload ZIP file", type="zip")
 
+st.write("Pack sizes to generate:")
+cols = st.columns(3)
+pack_sizes = tuple(
+    n for n, col in zip((2, 3, 4), cols)
+    if col.checkbox(f"Pack of {n}", value=True)
+)
 
-def generate_packs(zip_bytes: bytes) -> tuple[bytes, int]:
+
+def generate_packs(zip_bytes: bytes, pack_sizes: tuple[int, ...]) -> tuple[bytes, int]:
     """Process every image in the uploaded ZIP and return (output_zip_bytes, count)."""
     out_buf = io.BytesIO()
     saved = []
@@ -45,7 +52,7 @@ def generate_packs(zip_bytes: bytes) -> tuple[bytes, int]:
                 status.text(f"[{idx}/{len(entries)}]  {Path(name).name}")
                 try:
                     img = Image.open(io.BytesIO(zf.read(name)))
-                    for fname, result in process_image(img, stem):
+                    for fname, result in process_image(img, stem, pack_sizes):
                         # Packs are already flattened onto a solid background
                         # (no transparency), so JPEG gives a much smaller file
                         # than PNG with no visible quality loss at this quality.
@@ -63,15 +70,17 @@ def generate_packs(zip_bytes: bytes) -> tuple[bytes, int]:
     return out_buf.getvalue(), len(saved)
 
 
-if uploaded is not None:
+if uploaded is not None and not pack_sizes:
+    st.warning("Select at least one pack size.")
+elif uploaded is not None:
     zip_bytes = uploaded.getvalue()
-    file_key = hashlib.sha256(zip_bytes).hexdigest()
+    file_key = (hashlib.sha256(zip_bytes).hexdigest(), pack_sizes)
 
-    # Only (re)generate when a genuinely new/different ZIP is uploaded — otherwise
+    # Only (re)generate when the ZIP or the selected pack sizes changed — otherwise
     # reuse the cached result so clicking "Download" (which reruns the script)
     # doesn't reprocess every image from scratch.
     if st.session_state.get("pack_maker_key") != file_key:
-        result_zip, count = generate_packs(zip_bytes)
+        result_zip, count = generate_packs(zip_bytes, pack_sizes)
         st.session_state["pack_maker_key"] = file_key
         st.session_state["pack_maker_result"] = result_zip
         st.session_state["pack_maker_count"] = count

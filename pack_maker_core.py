@@ -101,11 +101,12 @@ def render_on_background(pack: Image.Image, bg_color: tuple[int, int, int]) -> I
     return bg
 
 
-def process_image(img: Image.Image, stem: str) -> list[tuple[str, Image.Image]]:
+def process_image(img: Image.Image, stem: str,
+                  pack_sizes: tuple[int, ...] = (2, 3, 4)) -> list[tuple[str, Image.Image]]:
     bg = sample_bg_color(img)
     cropped = auto_crop_to_content(_downscale_if_huge(img), bg)
     return [
         (f"{stem}_packof{count}.png",
          render_on_background(build_pack(cropped, count, bg), bg))
-        for count in (2, 3, 4)
+        for count in pack_sizes
     ]
