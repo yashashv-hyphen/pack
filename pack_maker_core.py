@@ -5,7 +5,6 @@ Upload a ZIP of product images, get packs of 2, 3, and 4.
 
 from PIL import Image, ImageChops
 
-GAP = 1  # px between items
 CROP_PAD = 6  # px of breathing room kept around the auto-cropped product
 CROP_TOLERANCE = 12  # 0-255, how different from bg a pixel must be to count as product
 MAX_SOURCE_DIM = 1600  # downscale huge source photos before processing, for speed
@@ -69,28 +68,32 @@ def auto_crop_to_content(img: Image.Image, bg_color: tuple[int, int, int],
 
 def build_pack(source: Image.Image, count: int,
                bg_color: tuple[int, int, int]) -> Image.Image:
+    """Cascade items diagonally, offset only along whichever axis is shorter,
+    so the pack's bounding box comes out square (or very close to it) no
+    matter how many items are in it — this keeps whitespace to a minimum
+    without ever cropping a product out of frame."""
     src = source.convert("RGBA")
     w, h = src.size
 
-    depth_scale = 0.02
-    depth_rise  = 0.01
-    step        = w + GAP
-    canvas_w    = w + (count - 1) * step
-    canvas_h    = h + int(h * depth_scale * (count - 1))
+    if count <= 1:
+        canvas = Image.new("RGBA", (w, h), (*bg_color, 255))
+        canvas.alpha_composite(src, dest=(0, 0))
+        return canvas
+
+    steps = count - 1
+    target = max(w, h)
+    dx = max(0, target - w) / steps
+    dy = max(0, target - h) / steps
+    canvas_w = w + round(dx * steps)
+    canvas_h = h + round(dy * steps)
 
     canvas = Image.new("RGBA", (canvas_w, canvas_h),
                        (bg_color[0], bg_color[1], bg_color[2], 255))
 
     for i in range(count - 1, -1, -1):
-        depth = count - 1 - i
-        scale = 1.0 - depth * depth_scale
-        iw, ih = max(1, int(w * scale)), max(1, int(h * scale))
-        # depth-scale steps are tiny (<=~6%), so bilinear is visually indistinguishable
-        # from LANCZOS here but noticeably faster across several resizes per image.
-        card = src.resize((iw, ih), Image.BILINEAR) if scale != 1.0 else src.copy()
-        x = i * step
-        y = canvas_h - ih - int(h * depth_rise * depth)
-        canvas.alpha_composite(card, dest=(x, y))
+        x = round(i * dx)
+        y = round(i * dy)
+        canvas.alpha_composite(src, dest=(x, y))
 
     bbox = canvas.getbbox()
     return canvas.crop(bbox) if bbox else canvas
@@ -98,14 +101,10 @@ def build_pack(source: Image.Image, count: int,
 
 def render_on_background(pack: Image.Image, bg_color: tuple[int, int, int],
                          size: int = OUTPUT_SIZE) -> Image.Image:
-    """Center the pack on a size x size square canvas, scaling it to fit."""
-    fit = pack.copy()
-    fit.thumbnail((size, size), Image.LANCZOS)
-
+    """Resize the (already near-square) pack onto a size x size canvas."""
+    fitted = pack.resize((size, size), Image.LANCZOS)
     bg = Image.new("RGB", (size, size), bg_color)
-    x = (size - fit.width) // 2
-    y = (size - fit.height) // 2
-    bg.paste(fit, (x, y), mask=fit.split()[3])
+    bg.paste(fitted, (0, 0), mask=fitted.split()[3])
     return bg
 
 
