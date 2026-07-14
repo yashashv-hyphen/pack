@@ -8,7 +8,8 @@ from PIL import Image, ImageChops
 CROP_PAD = 6  # px of breathing room kept around the auto-cropped product
 CROP_TOLERANCE = 12  # 0-255, how different from bg a pixel must be to count as product
 MAX_SOURCE_DIM = 1600  # downscale huge source photos before processing, for speed
-OUTPUT_SIZE = 2000  # px, square — the marketplace-recommended output resolution
+OUTPUT_MIN_SIDE = 2000  # px, recommended floor for the shorter output side
+OUTPUT_MAX_SIDE = 3000  # px, cap for the longer output side
 
 
 def sample_bg_color(img: Image.Image) -> tuple[int, int, int]:
@@ -100,10 +101,21 @@ def build_pack(source: Image.Image, count: int,
 
 
 def render_on_background(pack: Image.Image, bg_color: tuple[int, int, int],
-                         size: int = OUTPUT_SIZE) -> Image.Image:
-    """Resize the (already near-square) pack onto a size x size canvas."""
-    fitted = pack.resize((size, size), Image.LANCZOS)
-    bg = Image.new("RGB", (size, size), bg_color)
+                         min_side: int = OUTPUT_MIN_SIDE,
+                         max_side: int = OUTPUT_MAX_SIDE) -> Image.Image:
+    """Resize the pack up to a resolution matching its own aspect ratio —
+    no cropping, so no product is ever cut off. The shorter side targets
+    min_side (2000px); if the pack is elongated enough that would push the
+    longer side past max_side (3000px), the longer side is capped there
+    instead and the shorter side comes out a bit under min_side."""
+    w, h = pack.size
+    aspect = max(w, h) / min(w, h)
+    long_side = min(max_side, round(min_side * aspect))
+    short_side = max(1, round(long_side / aspect))
+    size = (long_side, short_side) if w >= h else (short_side, long_side)
+
+    fitted = pack.resize(size, Image.LANCZOS)
+    bg = Image.new("RGB", size, bg_color)
     bg.paste(fitted, (0, 0), mask=fitted.split()[3])
     return bg
 
