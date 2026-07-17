@@ -53,7 +53,12 @@ def auto_crop_to_content(img: Image.Image, bg_color: tuple[int, int, int],
         rgb = rgba.convert("RGB")
         flat_bg = Image.new("RGB", rgb.size, bg_color)
         diff = ImageChops.difference(rgb, flat_bg).convert("L")
-        bbox = diff.point(lambda p: 255 if p > tol else 0).getbbox()
+        mask = diff.point(lambda p: 255 if p > tol else 0)
+        # Knock out anything matching the photo's own background color so it
+        # can't bleed through as a color cast — the pack canvas is always
+        # pure white, so background pixels should be transparent, not baked in.
+        rgba.putalpha(mask)
+        bbox = mask.getbbox()
 
     if not bbox:
         return rgba
@@ -155,10 +160,14 @@ def render_on_background(pack: Image.Image, bg_color: tuple[int, int, int],
 
 def process_image(img: Image.Image, stem: str,
                   pack_sizes: tuple[int, ...] = (2, 3, 4)) -> list[tuple[str, Image.Image]]:
-    bg = sample_bg_color(img)
-    cropped = auto_crop_to_content(_downscale_if_huge(img), bg)
+    # sample_bg_color() only informs auto-crop's product-vs-background
+    # detection; the pack canvas and fillers are always pure white,
+    # regardless of the source photo's own background color.
+    src_bg = sample_bg_color(img)
+    cropped = auto_crop_to_content(_downscale_if_huge(img), src_bg)
+    white = (255, 255, 255)
     return [
         (f"{stem}_packof{count}.png",
-         render_on_background(build_pack(cropped, count, bg), bg))
+         render_on_background(build_pack(cropped, count, white), white))
         for count in pack_sizes
     ]
