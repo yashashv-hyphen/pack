@@ -195,18 +195,6 @@ section{padding:72px 16px;max-width:1000px;margin:0 auto}
   border:6px solid #fff;box-shadow:0 0 0 4px var(--rose),var(--shadow);animation:bob 3s ease-in-out infinite}
 .nick{font-family:"Dancing Script";font-size:clamp(24px,6vw,34px);color:#a86bff;margin-top:-6px}
 
-/* ---------- our story timeline ---------- */
-.timeline{max-width:620px;margin:0 auto;position:relative;padding-left:34px;display:grid;gap:18px}
-.timeline::before{content:"";position:absolute;left:12px;top:6px;bottom:6px;width:3px;border-radius:3px;background:linear-gradient(var(--rose),var(--lav))}
-.tl{position:relative;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 6px 16px rgba(224,69,127,.12)}
-.tl::before{content:attr(data-emo);position:absolute;left:-36px;top:10px;width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid var(--rose);display:flex;align-items:center;justify-content:center;font-size:15px}
-.tl b{display:block;font-size:12px;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-deep);margin-bottom:2px}
-.tl p{font-weight:500;line-height:1.5}
-.tl q{quotes:none;font-family:"Caveat";font-size:21px;color:#5b2a50;display:block;margin-top:4px}
-.tl.future{background:linear-gradient(135deg,#fff,#ffe6f0);border:2px dashed var(--rose)}
-.hero-cd{background:#fff;border-radius:999px;padding:8px 18px;font-weight:700;color:var(--ink);box-shadow:var(--shadow);font-size:15px}
-.hero-cd b{color:var(--pink-deep);font-size:18px}
-
 /* ---------- no-crying zone ---------- */
 .nocry{background:var(--card);border:2px solid #fff;border-radius:24px;box-shadow:var(--shadow);padding:clamp(22px,5vw,36px);max-width:620px;margin:0 auto;text-align:center}
 .nocry .big-emo{font-size:64px;display:inline-block;animation:bob 2.4s infinite}
@@ -265,6 +253,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
     </svg>
     <p class="sub">The verdict is in: all those 3 AM mocks, every seating arrangement you fought with, every cup of black coffee… it all counts. Future corporate lawyer Anshika is going to <b>phod do</b> CLAT. 💕</p>
     <div class="hero-cd" id="heroCd">⏳ counting down to 6th December…</div>
+    <div class="hero-cd" id="landCd">🛩️ sherrr is landing in India on 19th November</div>
     <div class="scroll-hint">scroll down, there's more for you ↓</div>
   </section>
 
@@ -274,20 +263,6 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
     <div class="letter">
       <span class="tape l"></span><span class="tape r"></span>
       <div class="hand" id="letterText"></div>
-    </div>
-  </section>
-
-  <!-- ================= STORY ================= -->
-  <section class="reveal">
-    <div class="title"><h2>Our little story</h2><p>from class 5 to forever ♡</p></div>
-    <div class="timeline">
-      <div class="tl" data-emo="🖊️"><b>Class 5</b><p>A very shy boy wanted to give you a birthday pen, but was too shy to hand it over himself, so he sent it through Pradyuman 🙈</p><q>"Kuch badla thodi hai, aaj bhi utna hi shy hun"</q></div>
-      <div class="tl" data-emo="👋"><b>6 October 2026</b><p>8 years later, a message popped up:</p><q>"Hieee, Anshikaaa this side"</q></div>
-      <div class="tl" data-emo="📚"><b>October nights</b><p>Mocks at 3 AM, logical sets at 1 AM, a lion in Singapore staying up with you. 78.72 turned into a projected 102. 📈</p><q>"Accuracy pe focus kar, time baad mein"</q></div>
-      <div class="tl" data-emo="❤️"><b>20 October 2026</b><p>You were scared, but you said it anyway:</p><q>"I think I am attached to u" · "I am too ❤️❤️❤️"</q></div>
-      <div class="tl" data-emo="🫀"><b>22 October 2026</b><p>You gave me a name that means heart.</p><q>"Good morning my Idhayam" 🥹</q></div>
-      <div class="tl future" data-emo="⚖️"><b>6 December 2026</b><p>Dr. Doom banke dhoom machane ka din. You walk in, you smash it, you walk out. Simple. 💪</p></div>
-      <div class="tl future" data-emo="🛩️"><b>March 2027</b><p>Lucknow. That tight hug that every sticker keeps reminding us of. Finally. 🫂</p></div>
     </div>
   </section>
 
@@ -415,7 +390,7 @@ And please, no tears, okay? Not before the exam, not after. If you need to cry, 
 
 Meri Anshika ke standards bahut bade hain, and my Anshika never loses. 💪
 
-After the exam: chocolate ice cream, as many scoops as you want. Then in March, I'm coming to Lucknow for that hug.
+After the exam: chocolate ice cream, as many scoops as you want. And guess what? On 19th November, I land in India. That hug is coming very, very soon. 🛩️🫂
 
 Good night and good luck, and may your day be as bright as the morning sun and as lovely as the midnight moon. 🌞🌙
 
@@ -433,7 +408,7 @@ const NOTES = [
   ["🙅‍♀️","Rule: no 'sorry', no 'thank you'. Court's orders!"],
   ["💪","My Anshika never loses. Simple."],
   ["🖊️","Still the shy boy who sent a pen through Pradyuman 🙈"],
-  ["🛩️","Lucknow, March. One very tight hug pending 🫂"],
+  ["🛩️","19th November: sherrr lands in India. Hug loading… 🫂"],
   ["🫀","To be loved is luck. You are my luck, Idhayam."]
 ];
 
@@ -715,6 +690,19 @@ function confetti(){
   tick(); setInterval(tick,60000);
 })();
 
+(function(){
+  const el=document.getElementById("landCd"); if(!el) return;
+  function tick(){
+    const ist=new Date(Date.now()+5.5*36e5);
+    const diff=Math.round((Date.UTC(2026,10,19)-Date.UTC(ist.getUTCFullYear(),ist.getUTCMonth(),ist.getUTCDate()))/864e5);
+    el.innerHTML = diff>1 ? `🛩️ Sherrr lands in India in <b>${diff}</b> days 🫂`
+      : diff===1 ? "🛩️ Sherrr lands in India <b>tomorrow</b>! 🫂"
+      : diff===0 ? "🛩️ <b>Today</b> sherrr lands in India! 🇮🇳🫂"
+      : "🇮🇳 <b>Sherrr is in India</b> and cheering for you up close 🫂";
+  }
+  tick(); setInterval(tick,60000);
+})();
+
 /* ===================== POLAROIDS ===================== */
 let photoTaps=0;
 document.querySelectorAll(".pola").forEach(f=>f.addEventListener("click",e=>{
@@ -744,7 +732,7 @@ document.getElementById("cryBtn").addEventListener("click",()=>{
 });
 
 /* ===================== HUG ===================== */
-const HUG_REPLIES=["Hug received, Idhayam! Real wala in Lucknow, March 🫂","Okay that one was extra tight 🥹","You give the best hugs, even virtual ones 💞","Hug #{n}! I'm keeping count 😌","Heart officially melted 🫠💖"];
+const HUG_REPLIES=["Hug received, Idhayam! Real wala very soon, I land on 19th Nov 🛩️🫂","Okay that one was extra tight 🥹","You give the best hugs, even virtual ones 💞","Hug #{n}! I'm keeping count 😌","Heart officially melted 🫠💖"];
 $("hugBtn").addEventListener("click",e=>{
   stats.hugs++;
   $("hugMsg").textContent=HUG_REPLIES[Math.min(stats.hugs-1,HUG_REPLIES.length-1)].replace("{n}",stats.hugs);
