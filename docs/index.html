@@ -195,6 +195,18 @@ section{padding:72px 16px;max-width:1000px;margin:0 auto}
   border:6px solid #fff;box-shadow:0 0 0 4px var(--rose),var(--shadow);animation:bob 3s ease-in-out infinite}
 .nick{font-family:"Dancing Script";font-size:clamp(24px,6vw,34px);color:#a86bff;margin-top:-6px}
 
+/* ---------- our story timeline ---------- */
+.timeline{max-width:620px;margin:0 auto;position:relative;padding-left:34px;display:grid;gap:18px}
+.timeline::before{content:"";position:absolute;left:12px;top:6px;bottom:6px;width:3px;border-radius:3px;background:linear-gradient(var(--rose),var(--lav))}
+.tl{position:relative;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 6px 16px rgba(224,69,127,.12)}
+.tl::before{content:attr(data-emo);position:absolute;left:-36px;top:10px;width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid var(--rose);display:flex;align-items:center;justify-content:center;font-size:15px}
+.tl b{display:block;font-size:12px;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-deep);margin-bottom:2px}
+.tl p{font-weight:500;line-height:1.5}
+.tl q{quotes:none;font-family:"Caveat";font-size:21px;color:#5b2a50;display:block;margin-top:4px}
+.tl.future{background:linear-gradient(135deg,#fff,#ffe6f0);border:2px dashed var(--rose)}
+.hero-cd{background:#fff;border-radius:999px;padding:8px 18px;font-weight:700;color:var(--ink);box-shadow:var(--shadow);font-size:15px}
+.hero-cd b{color:var(--pink-deep);font-size:18px}
+
 /* ---------- no-crying zone ---------- */
 .nocry{background:var(--card);border:2px solid #fff;border-radius:24px;box-shadow:var(--shadow);padding:clamp(22px,5vw,36px);max-width:620px;margin:0 auto;text-align:center}
 .nocry .big-emo{font-size:64px;display:inline-block;animation:bob 2.4s infinite}
@@ -221,7 +233,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
 
 <!-- ================= INTRO ================= -->
 <div id="intro">
-  <p>Psst… Idhayam, someone left a little something for you 💌</p>
+  <p>Psst… Idhayam, your sherrr 🦁 sent you something all the way from Singapore 💌</p>
   <div class="envelope" id="envelope" role="button" aria-label="Open the envelope">
     <div class="env-back"></div>
     <div class="env-letter">For Anshika ♡</div>
@@ -235,7 +247,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
 <main>
   <!-- ================= HERO ================= -->
   <section class="hero">
-    <span class="tag">⚖️ CLAT MISSION: ACCEPTED</span>
+    <span class="tag">⚖️ 6 DECEMBER · MISSION CLAT</span>
     <img class="hero-photo" src="idhayam-4.jpg" alt="Anshika smiling">
     <h1>All the best,<br><span class="name" data-her>Anshika</span>!</h1>
     <div class="nick">my Idhayam ♥️🫶</div>
@@ -251,7 +263,8 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
           <path d="M148 100 h44 a22 12 0 0 1 -44 0z" fill="#c9a7ff"/><text x="170" y="96" font-size="16" text-anchor="middle">📚</text></g>
       </g>
     </svg>
-    <p class="sub">The verdict is already in: you're brilliant, you've worked so hard, and you are going to <b>absolutely ace</b> CLAT. 💕</p>
+    <p class="sub">The verdict is in: all those 3 AM mocks, every seating arrangement you fought with, every cup of black coffee… it all counts. Future corporate lawyer Anshika is going to <b>phod do</b> CLAT. 💕</p>
+    <div class="hero-cd" id="heroCd">⏳ counting down to 6th December…</div>
     <div class="scroll-hint">scroll down, there's more for you ↓</div>
   </section>
 
@@ -264,14 +277,28 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
     </div>
   </section>
 
+  <!-- ================= STORY ================= -->
+  <section class="reveal">
+    <div class="title"><h2>Our little story</h2><p>from class 5 to forever ♡</p></div>
+    <div class="timeline">
+      <div class="tl" data-emo="🖊️"><b>Class 5</b><p>A very shy boy wanted to give you a birthday pen, but was too shy to hand it over himself, so he sent it through Pradyuman 🙈</p><q>"Kuch badla thodi hai, aaj bhi utna hi shy hun"</q></div>
+      <div class="tl" data-emo="👋"><b>6 October 2026</b><p>8 years later, a message popped up:</p><q>"Hieee, Anshikaaa this side"</q></div>
+      <div class="tl" data-emo="📚"><b>October nights</b><p>Mocks at 3 AM, logical sets at 1 AM, a lion in Singapore staying up with you. 78.72 turned into a projected 102. 📈</p><q>"Accuracy pe focus kar, time baad mein"</q></div>
+      <div class="tl" data-emo="❤️"><b>20 October 2026</b><p>You were scared, but you said it anyway:</p><q>"I think I am attached to u" · "I am too ❤️❤️❤️"</q></div>
+      <div class="tl" data-emo="🫀"><b>22 October 2026</b><p>You gave me a name that means heart.</p><q>"Good morning my Idhayam" 🥹</q></div>
+      <div class="tl future" data-emo="⚖️"><b>6 December 2026</b><p>Dr. Doom banke dhoom machane ka din. You walk in, you smash it, you walk out. Simple. 💪</p></div>
+      <div class="tl future" data-emo="🛩️"><b>March 2027</b><p>Lucknow. That tight hug that every sticker keeps reminding us of. Finally. 🫂</p></div>
+    </div>
+  </section>
+
   <!-- ================= PHOTOS ================= -->
   <section class="reveal">
     <div class="title"><h2>My favourite person</h2><p>exhibit A, B, C & D of why you're the cutest ♡</p></div>
     <div class="polaroids" id="polaroids">
-      <figure class="pola"><img src="idhayam-1.jpg" alt="Anshika smiling" loading="lazy"><figcaption>this smile = my whole world 🌍</figcaption></figure>
-      <figure class="pola"><img src="idhayam-2.jpg" alt="Anshika smiling" loading="lazy"><figcaption>future Adv. Anshika 👩‍⚖️</figcaption></figure>
-      <figure class="pola"><img src="idhayam-3.jpg" alt="Anshika laughing" loading="lazy"><figcaption>shy giggles hehe 🙈</figcaption></figure>
-      <figure class="pola"><img src="idhayam-4.jpg" alt="Anshika smiling" loading="lazy"><figcaption>keep smiling like this, Idhayam 🫶</figcaption></figure>
+      <figure class="pola"><img src="idhayam-1.jpg" alt="Anshika smiling" loading="lazy"><figcaption>the smile that made sherrr shy again 🦁</figcaption></figure>
+      <figure class="pola"><img src="idhayam-2.jpg" alt="Anshika smiling" loading="lazy"><figcaption>future corporate lawyer 👩‍⚖️💼</figcaption></figure>
+      <figure class="pola"><img src="idhayam-3.jpg" alt="Anshika laughing" loading="lazy"><figcaption>Ms. Special, caught giggling 🙈</figcaption></figure>
+      <figure class="pola"><img src="idhayam-4.jpg" alt="Anshika smiling" loading="lazy"><figcaption>my luck, my Idhayam 🫶</figcaption></figure>
     </div>
   </section>
 
@@ -308,7 +335,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
     <div class="title"><h2>No-crying zone</h2><p>official rule of this court 🧑‍⚖️</p></div>
     <div class="nocry">
       <span class="big-emo">🍦</span>
-      <p>Idhayam, I know you cry a lot when things feel heavy 🥺 but those pretty eyes deserve only happy tears. No crying before the exam, no crying after the exam. Only smiles and chocolate ice cream. Deal?</p>
+      <p>Idhayam, I know your eyes fill up fast, after a bad mock, after a good talk with Papa, sometimes for no reason at all 🥺 But remember: <b>hamare hote hue aapko rulane wala paida hi nahi hua</b> (except me… hasa hasa ke 😝). Croron ke aansu free mein mat bahana. Smile karo, ice cream khao. Deal?</p>
       <button class="cry-btn" id="cryBtn">I feel like crying 😢</button>
       <div class="cry-reply" id="cryReply"></div>
     </div>
@@ -324,11 +351,11 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
           <textarea id="center" rows="2" required placeholder="e.g. XYZ School, Sector 12, ..."></textarea>
         </div>
         <div class="row">
-          <div class="field"><label for="date">📅 Exam date</label><input type="date" id="date" required></div>
+          <div class="field"><label for="date">📅 Exam date</label><input type="date" id="date" value="2026-12-06" required></div>
           <div class="field"><label for="reporting">⏰ Reporting time</label><input type="time" id="reporting"></div>
         </div>
         <div class="row">
-          <div class="field"><label for="start">📝 Exam starts at</label><input type="time" id="start" required></div>
+          <div class="field"><label for="start">📝 Exam starts at</label><input type="time" id="start" value="14:00" required></div>
           <div class="field"><label for="end">🎉 Exam ends at</label><input type="time" id="end"></div>
         </div>
         <div class="field">
@@ -366,9 +393,10 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
 </main>
 
 <footer>
-  <div class="big">Objection overruled. 🧑‍⚖️</div>
+  <div class="big">Khel khatam nahi, abhi toh shuru hua hai. 🦁😺</div>
   <p>Your doubts have no standing in this court. You've got this, <span data-her>Anshika</span>.</p>
-  <p>Forever yours, Yashashv ♥️🫶</p>
+  <p style="font-family:'Caveat';font-size:22px;max-width:520px;margin:14px auto 0">"Loving is an art and to be loved is luck. I mastered the art, and my lady is my luck."</p>
+  <p>Forever yours, Yashashv (your sherrr) ♥️🫶</p>
   <button class="hug" id="hugBtn">Send me a virtual hug 🤗</button>
   <p id="hugMsg" style="min-height:24px"></p>
 </footer>
@@ -377,55 +405,53 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
 /* ===================== CONTENT ===================== */
 const LETTER = `My dearest {her}, my Idhayam ♥️
 
-I know how hard you've worked for this. All the early mornings, the late nights, the mocks, the GK, every single passage you pushed through even when you were so tired.
+Remember the shy boy from class 5 who sent you a birthday pen through Pradyuman because he couldn't hand it over himself? He's still shy. But he's not scared anymore, because you were brave enough to say it first.
 
-So before you walk into that exam hall, I want you to know this: I am so, so proud of you. Not because of a score, but because of who you are.
+I've seen you study at 3 AM with a blocked nose, fight seating arrangements until they gave up, and turn a 78 into a 102. Your logical improved, your QT improved, and you did it all yourself. I just sat in Singapore cheering.
 
-And listen to me carefully. No crying, okay? 🥺 I know your heart gets heavy sometimes and the tears come, but you are far stronger than you think. Wipe those pretty eyes, take a deep breath and smile. That smile of yours can win any case.
+So on 6th December, read the principle, apply it literally, trust your first instinct, and skip what's stuck. Accuracy first, time will follow. Be selfish. This day is only about you.
 
-Read carefully. Trust your gut. Skip what's stuck and come back to it. You know much more than you think you do.
+And please, no tears, okay? Not before the exam, not after. If you need to cry, call me and I'll make you laugh instead. You know I will.
 
-And after the exam? A big chocolate ice cream is waiting for you. As many scoops as you want, that's a promise. 🍦🍫
+Meri Anshika ke standards bahut bade hain, and my Anshika never loses. 💪
 
-Whatever happens, I'm right here, cheering the loudest. Now go show CLAT who's boss. ⚖️
+After the exam: chocolate ice cream, as many scoops as you want. Then in March, I'm coming to Lucknow for that hug.
+
+Good night and good luck, and may your day be as bright as the morning sun and as lovely as the midnight moon. 🌞🌙
 
 Forever yours,
-{you} 🫶`;
+{you} 🦁🫶`;
 
 const NOTES = [
-  ["💗","You are SO ready for this, Idhayam. Seriously."],
-  ["🍦","Chocolate ice cream after the exam. Unlimited scoops. Promise."],
-  ["🚫😭","Rule #1: NO crying. Only smiling. Court's orders 🧑‍⚖️"],
-  ["⭐","Future lawyer energy only 💼"],
-  ["🌸","One passage at a time. You've got this."],
-  ["🍀","Sending you every bit of luck I have"],
-  ["📚","All that hard work is about to pay off."],
-  ["😊","Your smile is my favourite thing in the whole world"],
-  ["🤗","A big tight hug is waiting for you after the exam"],
-  ["✨","Trust yourself. Your first instinct is good."],
-  ["🏛️","NLSIU, NALSAR… they should be nervous to get you"],
-  ["🫶","I'm so proud of you, Anshika, whatever happens"]
+  ["🦁","Sherrr says: accuracy first, time baad mein 😤"],
+  ["😺","You're 😺, I'm 🦁. Same family though 😝"],
+  ["🍦","Chocolate ice cream after 6th Dec. Unlimited scoops. Promise."],
+  ["🚫😭","Croron ke aansu free mein mat bahana 💎"],
+  ["📈","78.72 → 102. This graph only goes up."],
+  ["🧩","Seating arrangements, you're on notice 😎"],
+  ["☕","Coffee soulmates forever (just not after 12 AM)"],
+  ["🙅‍♀️","Rule: no 'sorry', no 'thank you'. Court's orders!"],
+  ["💪","My Anshika never loses. Simple."],
+  ["🖊️","Still the shy boy who sent a pen through Pradyuman 🙈"],
+  ["🛩️","Lucknow, March. One very tight hug pending 🫂"],
+  ["🫀","To be loved is luck. You are my luck, Idhayam."]
 ];
 
 const JAR = [
-  "Tears? Nope. Not today. Today is for smiling, Idhayam. 😊🫶",
-  "Every time you feel like crying, imagine me holding a chocolate ice cream for you. 🍦",
-  "Your smile is too pretty to hide behind tears. Show it to the world! 💖",
-  "Chocolate ice cream fact: it tastes 10x better after acing CLAT. 🍫🍦",
-  "You've survived 100% of your hardest days so far. This one's easy. 💪",
-  "Read the question twice, mark once. Calm mind = sharp mind. 🧘‍♀️",
-  "If a passage gets tough, skip it and come back. Strategy > stress. 🎯",
+  "Mera khel khatam? Nope. Tumhara khel toh ab shuru hua hai. 🔥",
+  "Read the principle, apply it literally. Legal is your home turf. ⚖️",
+  "Puzzle stuck? Skip, breathe, come back. Accuracy > speed. 🧩",
+  "Remember the 3 AM mocks? Exam day is easier than those nights. 🌙",
+  "Tears? Nope. Ice cream? Yes. 🍦",
+  "God's favourite child is on your side. And so is Mata Rani. 🙏",
+  "You don't need to be perfect. Just be my Anshika. 🌷",
+  "Introvert to expressive Anshika. If you can do that, CLAT is easy. 😌",
+  "Your sherrr is cheering so loud they can hear it in Lucknow. 🦁📣",
   "Deep breath in… 4 seconds… out… you're amazing. 🌬️",
   "Negative marking? Be smart, not scared. You know when to guess. 🤓",
-  "Somebody (me) thinks you're the smartest person in the room. 💖",
-  "It's just a paper. You're the whole package. 📦✨",
-  "You don't need to be perfect. You just need to be you. 🌷",
-  "Imagine walking out of the hall knowing you gave it everything. That's you. 🏆",
-  "Your effort > the exam. Always. 🫶",
-  "Sleep well tonight. Rested you is unstoppable. 😴⭐",
-  "When in doubt: legal reasoning = read the principle, apply it literally. ⚖️",
-  "I believe in you more than autocorrect believes 'ducking' is a word. 😂",
-  "One question at a time. One minute at a time. 🐢➡️🏁"
+  "Exam ke baad: Instagram is back, daily stories allowed. 📸",
+  "Every 'nahi ho raha' you said in October turned into 'kar liya'. 💪",
+  "Ladalee, you've got this. 🫶"
 ];
 
 const CHECKLIST = [
@@ -433,10 +459,11 @@ const CHECKLIST = [
   "Original photo ID 🆔",
   "Passport-size photo 📸",
   "Transparent water bottle 💧",
-  "Black/blue ball pens ✒️",
-  "Leave early — reach before reporting time 🚗",
-  "Eat something light before 🍌",
-  "Deep breath, no tears, remember Yashashv loves you 💖"
+  "Black/blue ball pens (a lucky one too 🖊️)",
+  "Leave early, reach before reporting time 🚗",
+  "Eat something light, not ice cream (yet 😝) 🍌",
+  "One cup of adrak wali chai or black coffee, not three ☕",
+  "Deep breath, no tears. Your sherrr loves you 🦁💖"
 ];
 
 /* ===================== TRACKING ===================== */
@@ -675,6 +702,19 @@ function confetti(){
   })();
 }
 
+/* ===================== HERO COUNTDOWN ===================== */
+(function(){
+  const el=document.getElementById("heroCd"); if(!el) return;
+  const t=new Date("2026-12-06T14:00:00+05:30");
+  function tick(){
+    const d=t-Date.now();
+    if(d<=0){ el.innerHTML = Date.now()-t < 3*36e5 ? "⚖️ <b>It's exam time.</b> Go phod do, Idhayam!" : "🎉 <b>CLAT done!</b> So proud of you. Ice cream time 🍦"; return; }
+    const days=Math.floor(d/864e5), hrs=Math.floor(d/36e5)%24;
+    el.innerHTML=`⏳ <b>${days}</b> days <b>${hrs}</b> hrs until you phod do CLAT`;
+  }
+  tick(); setInterval(tick,60000);
+})();
+
 /* ===================== POLAROIDS ===================== */
 let photoTaps=0;
 document.querySelectorAll(".pola").forEach(f=>f.addEventListener("click",e=>{
@@ -684,11 +724,11 @@ document.querySelectorAll(".pola").forEach(f=>f.addEventListener("click",e=>{
 
 /* ===================== NO CRYING ===================== */
 const CRY_REPLIES=[
-  "Hey hey hey, no tears, Idhayam 🥺 Here, have some chocolate ice cream 🍦",
-  "Wipe those eyes. You are brave, you are smart, and I am right here with you 🫶",
-  "Okay, one more ice cream rain, but then you have to smile for me, deal? 😊",
-  "Remember: you've done the hard work. Now it's just showing off 💪💖",
-  "If you still feel like crying, call me right now. I'm always here 📞♥️"
+  "Arre arre, croron ke aansu! 💎 Here, have some chocolate ice cream instead 🍦",
+  "Hamare hote hue aapko rulane wala paida hi nahi hua. Smile karo 🫶",
+  "Your nose will get blocked again and then you'll blame science 😝 Smile please!",
+  "You've done the hard work, Idhayam. Now it's just showing off 💪💖",
+  "Still feel like crying? Call your sherrr right now 📞🦁 I'm always here."
 ];
 let cries=0;
 document.getElementById("cryBtn").addEventListener("click",()=>{
@@ -704,7 +744,7 @@ document.getElementById("cryBtn").addEventListener("click",()=>{
 });
 
 /* ===================== HUG ===================== */
-const HUG_REPLIES=["Hug received, Idhayam! Sending one back x1000 🤗","Okay that one was extra tight 🥹","You give the best hugs, even virtual ones 💞","Hug #{n}! I'm keeping count 😌","Heart officially melted 🫠💖"];
+const HUG_REPLIES=["Hug received, Idhayam! Real wala in Lucknow, March 🫂","Okay that one was extra tight 🥹","You give the best hugs, even virtual ones 💞","Hug #{n}! I'm keeping count 😌","Heart officially melted 🫠💖"];
 $("hugBtn").addEventListener("click",e=>{
   stats.hugs++;
   $("hugMsg").textContent=HUG_REPLIES[Math.min(stats.hugs-1,HUG_REPLIES.length-1)].replace("{n}",stats.hugs);
