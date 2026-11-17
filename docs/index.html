@@ -221,7 +221,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
 
 <!-- ================= INTRO ================= -->
 <div id="intro">
-  <p>Psst… Idhayam, your sherrr 🦁 sent you something all the way from Singapore 💌</p>
+  <p>Psst… Idhayam, your sherrr 🦁 left you something for the big day 💌</p>
   <div class="envelope" id="envelope" role="button" aria-label="Open the envelope">
     <div class="env-back"></div>
     <div class="env-letter">For Anshika ♡</div>
@@ -253,7 +253,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
     </svg>
     <p class="sub">The verdict is in: all those 3 AM mocks, every seating arrangement you fought with, every cup of black coffee… it all counts. Future corporate lawyer Anshika is going to <b>phod do</b> CLAT. 💕</p>
     <div class="hero-cd" id="heroCd">⏳ counting down to 6th December…</div>
-    <div class="hero-cd" id="landCd">🛩️ sherrr is landing in India on 19th November</div>
+    <div class="hero-cd">📵 No calls, no hugs, no sherrr until the exam is over. <b>Only CLAT.</b></div>
     <div class="scroll-hint">scroll down, there's more for you ↓</div>
   </section>
 
@@ -345,7 +345,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
         </div>
         <div class="field">
           <label for="msg">💌 Anything you want to tell me / need from me?</label>
-          <textarea id="msg" rows="3" placeholder="pick me up after? bring chocolate ice cream? just call me? 🍦"></textarea>
+          <textarea id="msg" rows="3" placeholder="what should I bring after the exam? chocolate ice cream? 🍦"></textarea>
         </div>
         <button class="submit" type="submit" id="submitBtn">Send it to me 💖</button>
       </form>
@@ -372,7 +372,7 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
   <p>Your doubts have no standing in this court. You've got this, <span data-her>Anshika</span>.</p>
   <p style="font-family:'Caveat';font-size:22px;max-width:520px;margin:14px auto 0">"Loving is an art and to be loved is luck. I mastered the art, and my lady is my luck."</p>
   <p>Forever yours, Yashashv (your sherrr) ♥️🫶</p>
-  <button class="hug" id="hugBtn">Send me a virtual hug 🤗</button>
+  <button class="hug" id="hugBtn">Save a hug for after the exam 🔒🤗</button>
   <p id="hugMsg" style="min-height:24px"></p>
 </footer>
 
@@ -386,11 +386,13 @@ I've seen you study at 3 AM with a blocked nose, fight seating arrangements unti
 
 So on 6th December, read the principle, apply it literally, trust your first instinct, and skip what's stuck. Accuracy first, time will follow. Be selfish. This day is only about you.
 
-And please, no tears, okay? Not before the exam, not after. If you need to cry, call me and I'll make you laugh instead. You know I will.
+And please, no tears, okay? Not before the exam, not after. If you feel like crying, open this page, tap the jar, read this letter again. I'm right here in it.
 
 Meri Anshika ke standards bahut bade hain, and my Anshika never loses. 💪
 
-After the exam: chocolate ice cream, as many scoops as you want. And guess what? On 19th November, I land in India. That hug is coming very, very soon. 🛩️🫂
+Now listen to your sherrr very carefully. For these two days: no calls, no hugs, no texts to me, no thinking about me. Phone away, mind on the paper. I'm in India, closer than ever, and I'm still not going to distract you. Be selfish. The only thing that exists right now is CLAT.
+
+After the exam, it's all yours: the call, the hug, chocolate ice cream, as many scoops as you want. 🍦🫂
 
 Good night and good luck, and may your day be as bright as the morning sun and as lovely as the midnight moon. 🌞🌙
 
@@ -408,7 +410,7 @@ const NOTES = [
   ["🙅‍♀️","Rule: no 'sorry', no 'thank you'. Court's orders!"],
   ["💪","My Anshika never loses. Simple."],
   ["🖊️","Still the shy boy who sent a pen through Pradyuman 🙈"],
-  ["🛩️","19th November: sherrr lands in India. Hug loading… 🫂"],
+  ["🔒","Calls & hugs are locked until 6th Dec, 4 PM. Exam first! 📵"],
   ["🫀","To be loved is luck. You are my luck, Idhayam."]
 ];
 
@@ -422,6 +424,8 @@ const JAR = [
   "You don't need to be perfect. Just be my Anshika. 🌷",
   "Introvert to expressive Anshika. If you can do that, CLAT is easy. 😌",
   "Your sherrr is cheering so loud they can hear it in Lucknow. 🦁📣",
+  "Phone away. Notifications off. Even mine. Only CLAT. 📵",
+  "Don't call me, don't text me. Revise one more passage instead 😤📚",
   "Deep breath in… 4 seconds… out… you're amazing. 🌬️",
   "Negative marking? Be smart, not scared. You know when to guess. 🤓",
   "Exam ke baad: Instagram is back, daily stories allowed. 📸",
@@ -438,6 +442,7 @@ const CHECKLIST = [
   "Leave early, reach before reporting time 🚗",
   "Eat something light, not ice cream (yet 😝) 🍌",
   "One cup of adrak wali chai or black coffee, not three ☕",
+  "Phone on silent. Yes, even for sherrr 📵",
   "Deep breath, no tears. Your sherrr loves you 🦁💖"
 ];
 
@@ -487,7 +492,7 @@ function sendExit(){
     `📝 Notes flipped: ${stats.notesFlipped.size}/${NOTES.length}`,
     `🫙 Jar messages pulled: ${stats.jarPulls}`,
     `✅ Checklist ticks: ${stats.checks}`,
-    `🤗 Hugs sent: ${stats.hugs}`,
+    `🤗 Hugs saved: ${stats.hugs}`,
     `📸 Photo taps: ${typeof photoTaps!=='undefined'?photoTaps:0}`,
     `🥺 "I feel like crying" presses: ${typeof cries!=='undefined'?cries:0}`,
     `📜 Scrolled: ${stats.maxScroll}% of page`,
@@ -685,20 +690,7 @@ function confetti(){
     const d=t-Date.now();
     if(d<=0){ el.innerHTML = Date.now()-t < 3*36e5 ? "⚖️ <b>It's exam time.</b> Go phod do, Idhayam!" : "🎉 <b>CLAT done!</b> So proud of you. Ice cream time 🍦"; return; }
     const days=Math.floor(d/864e5), hrs=Math.floor(d/36e5)%24;
-    el.innerHTML=`⏳ <b>${days}</b> days <b>${hrs}</b> hrs until you phod do CLAT`;
-  }
-  tick(); setInterval(tick,60000);
-})();
-
-(function(){
-  const el=document.getElementById("landCd"); if(!el) return;
-  function tick(){
-    const ist=new Date(Date.now()+5.5*36e5);
-    const diff=Math.round((Date.UTC(2026,10,19)-Date.UTC(ist.getUTCFullYear(),ist.getUTCMonth(),ist.getUTCDate()))/864e5);
-    el.innerHTML = diff>1 ? `🛩️ Sherrr lands in India in <b>${diff}</b> days 🫂`
-      : diff===1 ? "🛩️ Sherrr lands in India <b>tomorrow</b>! 🫂"
-      : diff===0 ? "🛩️ <b>Today</b> sherrr lands in India! 🇮🇳🫂"
-      : "🇮🇳 <b>Sherrr is in India</b> and cheering for you up close 🫂";
+    el.innerHTML=`⏳ <b>${days}</b> day${days===1?"":"s"} <b>${hrs}</b> hr${hrs===1?"":"s"} until you phod do CLAT`;
   }
   tick(); setInterval(tick,60000);
 })();
@@ -716,7 +708,7 @@ const CRY_REPLIES=[
   "Hamare hote hue aapko rulane wala paida hi nahi hua. Smile karo 🫶",
   "Your nose will get blocked again and then you'll blame science 😝 Smile please!",
   "You've done the hard work, Idhayam. Now it's just showing off 💪💖",
-  "Still feel like crying? Call your sherrr right now 📞🦁 I'm always here."
+  "Still feel like crying? Close your eyes, take 5 deep breaths, read the letter again. I'm right there in it 🦁💖"
 ];
 let cries=0;
 document.getElementById("cryBtn").addEventListener("click",()=>{
@@ -728,16 +720,16 @@ document.getElementById("cryBtn").addEventListener("click",()=>{
     c.style.left=Math.random()*100+"vw"; c.style.animationDuration=(2.2+Math.random()*2)+"s";
     document.body.appendChild(c); setTimeout(()=>c.remove(),4500);
   },i*70);
-  if(cries===1) notify(`🥺 ${CONFIG.herName} pressed "I feel like crying"`,"Maybe call her right now and cheer her up ♥️","cry",5);
+  if(cries===1) notify(`🥺 ${CONFIG.herName} pressed "I feel like crying"`,"She was feeling low. Up to you whether to reach out ♥️","cry",5);
 });
 
 /* ===================== HUG ===================== */
-const HUG_REPLIES=["Hug received, Idhayam! Real wala very soon, I land on 19th Nov 🛩️🫂","Okay that one was extra tight 🥹","You give the best hugs, even virtual ones 💞","Hug #{n}! I'm keeping count 😌","Heart officially melted 🫠💖"];
+const HUG_REPLIES=["Hug saved 🔒 Redeemable after 6th Dec, 4 PM. Now back to studying! 📚","2 hugs saved. Sherrr is keeping count 😌","Hug #{n} locked in. That's a lot of hugs to collect after CLAT 🫂","Okay okay, all saved! Now go revise 😤💖"];
 $("hugBtn").addEventListener("click",e=>{
   stats.hugs++;
   $("hugMsg").textContent=HUG_REPLIES[Math.min(stats.hugs-1,HUG_REPLIES.length-1)].replace("{n}",stats.hugs);
   sparkleAt(e.clientX,e.clientY,22,["🤗","💖","💕"]);
-  if(stats.hugs===1) notify(`🤗 ${CONFIG.herName} sent you a virtual hug!`,"Go send her one back 💕","hugging",4);
+  if(stats.hugs===1) notify(`🤗 ${CONFIG.herName} saved a hug for after the exam!`,"Collect it after 6th Dec, 4 PM 🫂","hugging",4);
 });
 </script>
 </body>
