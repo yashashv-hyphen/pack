@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>All the Best, My Love 💖</title>
+<title>All the Best, Idhayam 💖</title>
 <meta name="description" content="A little something for you before the big day.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
@@ -16,8 +16,9 @@
    ✏️  EDIT THESE TO PERSONALISE  ✏️
    ============================================================ */
 const CONFIG = {
-  herName: "My Love",          // e.g. "Riya"  — shown all over the site
-  yourName: "Me",              // how you sign the letter
+  herName: "Anshika",          // shown all over the site
+  nickname: "Idhayam",         // my heart ♥️
+  yourName: "Yashashv",        // how you sign the letter
   // Instant phone notifications (free, no signup): install the "ntfy" app
   // and subscribe to this exact topic name. Keep it secret.
   ntfyTopic: "clat-wishes-c9514f724ef73a12",
@@ -180,6 +181,29 @@ section{padding:72px 16px;max-width:1000px;margin:0 auto}
 .check.done .box::after{content:"✓";font-weight:800}
 .check.done .txt{text-decoration:line-through;opacity:.6}
 
+/* ---------- polaroids ---------- */
+.polaroids{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:960px;margin:0 auto}
+@media (max-width:760px){.polaroids{grid-template-columns:repeat(2,1fr);gap:16px}}
+.pola{background:#fff;padding:10px 10px 14px;border-radius:6px;box-shadow:0 12px 26px rgba(74,32,64,.18);border:0;
+  transition:transform .35s cubic-bezier(.3,1.5,.5,1);position:relative}
+.pola img{width:100%;aspect-ratio:54/70;object-fit:cover;border-radius:3px;display:block;background:#fde}
+.pola figcaption{font-family:"Caveat";font-size:clamp(18px,4.4vw,22px);color:#5b2a50;text-align:center;margin-top:8px;line-height:1.1}
+.pola:nth-child(1){rotate:-4deg}.pola:nth-child(2){rotate:3deg;margin-top:18px}.pola:nth-child(3){rotate:-2deg}.pola:nth-child(4){rotate:4deg;margin-top:12px}
+.pola:hover,.pola.boop{transform:scale(1.06) translateY(-6px);z-index:2}
+.pola::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:22px;transform:translateX(-50%) rotate(-4deg);background:#ffd6e6cc;border-radius:2px}
+.hero-photo{width:clamp(130px,34vw,170px);aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:50% 30%;
+  border:6px solid #fff;box-shadow:0 0 0 4px var(--rose),var(--shadow);animation:bob 3s ease-in-out infinite}
+.nick{font-family:"Dancing Script";font-size:clamp(24px,6vw,34px);color:#a86bff;margin-top:-6px}
+
+/* ---------- no-crying zone ---------- */
+.nocry{background:var(--card);border:2px solid #fff;border-radius:24px;box-shadow:var(--shadow);padding:clamp(22px,5vw,36px);max-width:620px;margin:0 auto;text-align:center}
+.nocry .big-emo{font-size:64px;display:inline-block;animation:bob 2.4s infinite}
+.nocry p{font-weight:500;color:var(--ink-soft);margin:10px 0 18px;font-size:17px}
+.cry-btn{background:#fff;border:2px solid var(--sky);color:#3b6ea8;border-radius:999px;padding:13px 24px;font-weight:700;font-size:16px;box-shadow:0 6px 16px rgba(80,140,220,.2)}
+.cry-reply{margin-top:18px;font-size:19px;font-weight:600;min-height:28px;color:var(--ink)}
+.icecream{position:fixed;top:-60px;font-size:34px;pointer-events:none;z-index:65;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+
 /* ---------- footer ---------- */
 footer{text-align:center;padding:70px 16px 90px;position:relative;z-index:1}
 footer .big{font-family:"Dancing Script";font-size:clamp(34px,8vw,54px);color:var(--pink-deep)}
@@ -197,10 +221,10 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
 
 <!-- ================= INTRO ================= -->
 <div id="intro">
-  <p>Psst… someone left a little something for you 💌</p>
+  <p>Psst… Idhayam, someone left a little something for you 💌</p>
   <div class="envelope" id="envelope" role="button" aria-label="Open the envelope">
     <div class="env-back"></div>
-    <div class="env-letter">For you ♡</div>
+    <div class="env-letter">For Anshika ♡</div>
     <div class="env-front"></div>
     <div class="env-flap"></div>
     <div class="env-seal">💗</div>
@@ -212,7 +236,9 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
   <!-- ================= HERO ================= -->
   <section class="hero">
     <span class="tag">⚖️ CLAT MISSION: ACCEPTED</span>
-    <h1>All the best,<br><span class="name" data-her>My Love</span>!</h1>
+    <img class="hero-photo" src="idhayam-4.jpg" alt="Anshika smiling">
+    <h1>All the best,<br><span class="name" data-her>Anshika</span>!</h1>
+    <div class="nick">my Idhayam ♥️🫶</div>
     <svg class="scales" viewBox="0 0 200 170" aria-hidden="true">
       <rect x="96" y="40" width="8" height="105" rx="4" fill="#e0457f"/>
       <rect x="60" y="145" width="80" height="12" rx="6" fill="#e0457f"/>
@@ -235,6 +261,17 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
     <div class="letter">
       <span class="tape l"></span><span class="tape r"></span>
       <div class="hand" id="letterText"></div>
+    </div>
+  </section>
+
+  <!-- ================= PHOTOS ================= -->
+  <section class="reveal">
+    <div class="title"><h2>My favourite person</h2><p>exhibit A, B, C & D of why you're the cutest ♡</p></div>
+    <div class="polaroids" id="polaroids">
+      <figure class="pola"><img src="idhayam-1.jpg" alt="Anshika smiling" loading="lazy"><figcaption>this smile = my whole world 🌍</figcaption></figure>
+      <figure class="pola"><img src="idhayam-2.jpg" alt="Anshika smiling" loading="lazy"><figcaption>future Adv. Anshika 👩‍⚖️</figcaption></figure>
+      <figure class="pola"><img src="idhayam-3.jpg" alt="Anshika laughing" loading="lazy"><figcaption>shy giggles hehe 🙈</figcaption></figure>
+      <figure class="pola"><img src="idhayam-4.jpg" alt="Anshika smiling" loading="lazy"><figcaption>keep smiling like this, Idhayam 🫶</figcaption></figure>
     </div>
   </section>
 
@@ -266,9 +303,20 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
     </div>
   </section>
 
+  <!-- ================= NO CRYING ================= -->
+  <section class="reveal">
+    <div class="title"><h2>No-crying zone</h2><p>official rule of this court 🧑‍⚖️</p></div>
+    <div class="nocry">
+      <span class="big-emo">🍦</span>
+      <p>Idhayam, I know you cry a lot when things feel heavy 🥺 but those pretty eyes deserve only happy tears. No crying before the exam, no crying after the exam. Only smiles and chocolate ice cream. Deal?</p>
+      <button class="cry-btn" id="cryBtn">I feel like crying 😢</button>
+      <div class="cry-reply" id="cryReply"></div>
+    </div>
+  </section>
+
   <!-- ================= FORM ================= -->
   <section class="reveal" id="examSec">
-    <div class="title"><h2>Tell me about the big day</h2><p>so I can be there for you (in spirit, with snacks & prayers) 🙏</p></div>
+    <div class="title"><h2>Tell me about the big day</h2><p>so I can be there for you (in spirit, with chocolate ice cream & prayers) 🍦🙏</p></div>
     <div class="form-card">
       <form id="examForm" autocomplete="off">
         <div class="field">
@@ -295,13 +343,13 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
         </div>
         <div class="field">
           <label for="msg">💌 Anything you want to tell me / need from me?</label>
-          <textarea id="msg" rows="3" placeholder="pick me up after? bring chocolate? just call me? 🍫"></textarea>
+          <textarea id="msg" rows="3" placeholder="pick me up after? bring chocolate ice cream? just call me? 🍦"></textarea>
         </div>
         <button class="submit" type="submit" id="submitBtn">Send it to me 💖</button>
       </form>
 
       <div class="thanks" id="thanks">
-        <h3>Got it, my love! 💕</h3>
+        <h3>Got it, Idhayam! 💕</h3>
         <p>I'll be thinking of you every single minute. Countdown to you smashing it:</p>
         <div class="countdown" id="countdown"></div>
         <div class="summary" id="summary"></div>
@@ -319,42 +367,51 @@ footer p{color:var(--ink-soft);font-weight:500;margin-top:8px}
 
 <footer>
   <div class="big">Objection overruled. 🧑‍⚖️</div>
-  <p>Your doubts have no standing in this court. You've got this, <span data-her>My Love</span>.</p>
+  <p>Your doubts have no standing in this court. You've got this, <span data-her>Anshika</span>.</p>
+  <p>Forever yours, Yashashv ♥️🫶</p>
   <button class="hug" id="hugBtn">Send me a virtual hug 🤗</button>
   <p id="hugMsg" style="min-height:24px"></p>
 </footer>
 
 <script>
 /* ===================== CONTENT ===================== */
-const LETTER = `Dear {her},
+const LETTER = `My dearest {her}, my Idhayam ♥️
 
-I know how hard you've worked for this — the early mornings, the late nights, the mocks, the GK, every single passage you pushed through even when you were tired.
+I know how hard you've worked for this. All the early mornings, the late nights, the mocks, the GK, every single passage you pushed through even when you were so tired.
 
-So before you walk into that exam hall, I just want you to know this: I am so, so proud of you. Not because of a score, but because of who you are.
+So before you walk into that exam hall, I want you to know this: I am so, so proud of you. Not because of a score, but because of who you are.
 
-Breathe. Read carefully. Trust your gut. Skip what's stuck and come back to it. You know so much more than you think you do.
+And listen to me carefully. No crying, okay? 🥺 I know your heart gets heavy sometimes and the tears come, but you are far stronger than you think. Wipe those pretty eyes, take a deep breath and smile. That smile of yours can win any case.
+
+Read carefully. Trust your gut. Skip what's stuck and come back to it. You know much more than you think you do.
+
+And after the exam? A big chocolate ice cream is waiting for you. As many scoops as you want, that's a promise. 🍦🍫
 
 Whatever happens, I'm right here, cheering the loudest. Now go show CLAT who's boss. ⚖️
 
-All my love, always,
-{you} 💖`;
+Forever yours,
+{you} 🫶`;
 
 const NOTES = [
-  ["💗","You are SO ready for this. Seriously."],
-  ["☕","Hydrate, snack, breathe. In that order."],
+  ["💗","You are SO ready for this, Idhayam. Seriously."],
+  ["🍦","Chocolate ice cream after the exam. Unlimited scoops. Promise."],
+  ["🚫😭","Rule #1: NO crying. Only smiling. Court's orders 🧑‍⚖️"],
   ["⭐","Future lawyer energy only 💼"],
   ["🌸","One passage at a time. You've got this."],
   ["🍀","Sending you every bit of luck I have"],
-  ["📚","All that hard work? It's about to pay off."],
-  ["🧠","Big brain, bigger heart. Unbeatable combo."],
-  ["🤗","A hug is waiting for you after the exam"],
-  ["✨","Trust yourself — your first instinct is good"],
+  ["📚","All that hard work is about to pay off."],
+  ["😊","Your smile is my favourite thing in the whole world"],
+  ["🤗","A big tight hug is waiting for you after the exam"],
+  ["✨","Trust yourself. Your first instinct is good."],
   ["🏛️","NLSIU, NALSAR… they should be nervous to get you"],
-  ["😘","I'm so proud of you, whatever happens"],
-  ["🍫","Post-exam treat: on me. Any amount. 🫡"]
+  ["🫶","I'm so proud of you, Anshika, whatever happens"]
 ];
 
 const JAR = [
+  "Tears? Nope. Not today. Today is for smiling, Idhayam. 😊🫶",
+  "Every time you feel like crying, imagine me holding a chocolate ice cream for you. 🍦",
+  "Your smile is too pretty to hide behind tears. Show it to the world! 💖",
+  "Chocolate ice cream fact: it tastes 10x better after acing CLAT. 🍫🍦",
   "You've survived 100% of your hardest days so far. This one's easy. 💪",
   "Read the question twice, mark once. Calm mind = sharp mind. 🧘‍♀️",
   "If a passage gets tough, skip it and come back. Strategy > stress. 🎯",
@@ -379,7 +436,7 @@ const CHECKLIST = [
   "Black/blue ball pens ✒️",
   "Leave early — reach before reporting time 🚗",
   "Eat something light before 🍌",
-  "Deep breath + remember I love you 💖"
+  "Deep breath, no tears, remember Yashashv loves you 💖"
 ];
 
 /* ===================== TRACKING ===================== */
@@ -429,6 +486,8 @@ function sendExit(){
     `🫙 Jar messages pulled: ${stats.jarPulls}`,
     `✅ Checklist ticks: ${stats.checks}`,
     `🤗 Hugs sent: ${stats.hugs}`,
+    `📸 Photo taps: ${typeof photoTaps!=='undefined'?photoTaps:0}`,
+    `🥺 "I feel like crying" presses: ${typeof cries!=='undefined'?cries:0}`,
     `📜 Scrolled: ${stats.maxScroll}% of page`,
     `📍 Submitted exam details: ${stats.submitted?"yes":"no"}`
   ], "bar_chart", 3, true);
@@ -442,10 +501,10 @@ window.addEventListener("scroll",()=>{
 
 /* ===================== PERSONALISE ===================== */
 document.querySelectorAll("[data-her]").forEach(el=>el.textContent=CONFIG.herName);
-document.title = `All the Best, ${CONFIG.herName} 💖`;
+document.title = `All the Best, ${CONFIG.nickname} 💖`;
 
 /* ===================== FLOATING BG ===================== */
-const FLOAT_EMO = ["💖","💕","🌸","✨","💗","⭐","🎀","💞","⚖️","📚"];
+const FLOAT_EMO = ["💖","💕","🌸","✨","💗","⭐","🎀","💞","⚖️","📚","🍦","🫶"];
 const floaties = document.getElementById("floaties");
 function spawnFloaty(){
   const f = document.createElement("span");
@@ -616,8 +675,36 @@ function confetti(){
   })();
 }
 
+/* ===================== POLAROIDS ===================== */
+let photoTaps=0;
+document.querySelectorAll(".pola").forEach(f=>f.addEventListener("click",e=>{
+  f.classList.add("boop"); setTimeout(()=>f.classList.remove("boop"),500);
+  sparkleAt(e.clientX,e.clientY,14,["💖","😍","🫶","✨"]); photoTaps++;
+}));
+
+/* ===================== NO CRYING ===================== */
+const CRY_REPLIES=[
+  "Hey hey hey, no tears, Idhayam 🥺 Here, have some chocolate ice cream 🍦",
+  "Wipe those eyes. You are brave, you are smart, and I am right here with you 🫶",
+  "Okay, one more ice cream rain, but then you have to smile for me, deal? 😊",
+  "Remember: you've done the hard work. Now it's just showing off 💪💖",
+  "If you still feel like crying, call me right now. I'm always here 📞♥️"
+];
+let cries=0;
+document.getElementById("cryBtn").addEventListener("click",()=>{
+  cries++;
+  document.getElementById("cryReply").textContent=CRY_REPLIES[Math.min(cries-1,CRY_REPLIES.length-1)];
+  for(let i=0;i<26;i++) setTimeout(()=>{
+    const c=document.createElement("span"); c.className="icecream";
+    c.textContent=["🍦","🍫","🍨","💖"][Math.random()*4|0];
+    c.style.left=Math.random()*100+"vw"; c.style.animationDuration=(2.2+Math.random()*2)+"s";
+    document.body.appendChild(c); setTimeout(()=>c.remove(),4500);
+  },i*70);
+  if(cries===1) notify(`🥺 ${CONFIG.herName} pressed "I feel like crying"`,"Maybe call her right now and cheer her up ♥️","cry",5);
+});
+
 /* ===================== HUG ===================== */
-const HUG_REPLIES=["Hug received! Sending one back x1000 🤗","Okay that one was extra tight 🥹","You give the best hugs, even virtual ones 💞","Hug #{n}! I'm keeping count 😌","Heart officially melted 🫠💖"];
+const HUG_REPLIES=["Hug received, Idhayam! Sending one back x1000 🤗","Okay that one was extra tight 🥹","You give the best hugs, even virtual ones 💞","Hug #{n}! I'm keeping count 😌","Heart officially melted 🫠💖"];
 $("hugBtn").addEventListener("click",e=>{
   stats.hugs++;
   $("hugMsg").textContent=HUG_REPLIES[Math.min(stats.hugs-1,HUG_REPLIES.length-1)].replace("{n}",stats.hugs);

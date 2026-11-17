@@ -5,8 +5,8 @@ The website is the single file `docs/index.html`. You only need to do 3 things.
 ## Step 1: Personalise (1 min)
 Open `docs/index.html`. Near the top is a `CONFIG` block:
 ```js
-herName: "My Love",   // ← her name / nickname
-yourName: "Me",       // ← how you sign the letter
+herName: "Anshika",   // ← already set
+yourName: "Yashashv", // ← already set
 ```
 You can also edit the letter, the notes, the jar messages and the checklist
 (`LETTER`, `NOTES`, `JAR`, `CHECKLIST` near the top of the second `<script>`).
@@ -20,6 +20,7 @@ You can also edit the letter, the notes, the jar messages and the checklist
    - 💌 opens the envelope
    - 📝 reads all the sticky notes
    - 🤗 sends you a virtual hug
+   - 🥺 presses "I feel like crying" (call her!)
    - 📍 **submits her exam centre, date, times, mood and message**
    - 📊 leaves the page (how long she stayed, what she clicked, how far she scrolled)
 
